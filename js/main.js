@@ -3,7 +3,7 @@ var Narnia = {};
 (function (cartola) {
 
     var time_api_url = 'https://api.cartolafc.globo.com/time/';
-    var times = ['perebas-forever', 'narnia-de-munique', 'sao-bacon-fc', 'palmmares', 'boletos-fc', 'petrinhus-fc', 'xutebol-club'];
+    var times = ['perebas-forever', 'narnia-de-munique', 'sao-bacon-fc', 'goblins-team', 'boletos-fc', 'petrinhus-fc', 'xutebol-club'];
 
     function get_pontuacao_rodada(nome_time, handleData) {
         $.ajax({
