@@ -1,15 +1,25 @@
-
-
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
 
+.ponto {
+    color: green;
+    font-size: x-large;
+}
 
+.pontoparcial {
+    color: darkblue;
+    font-size: x-large;
+}
 
+.patrimonio {
+    color: darkred;
+    font-size: x-large;
+}
 
-
-
-
+.paga-coca {
+    background: #EFBABA;
+}
 
 
 
