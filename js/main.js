@@ -112,8 +112,12 @@ var Narnia = {};
             data_row_attr = $(rows[i]).data('row');
             data_total_attr = $(rows[i]).data('total');
 
-            if ((typeof data_row_attr !== 'undefined') && (typeof data_total_attr !== 'undefined')) data_row[data_total_attr] = data_row_attr;
+            if (typeof data_row_attr !== 'undefined') data_row.push(data_row_attr);
             if (typeof data_total_attr !== 'undefined') data_total.push(data_total_attr);
+        }
+        var arrr = [];
+        for (var h = 0; h < data_row.length; h++) {
+            arrr[h + '-' + data_total[h]] = data_row[h];
         }
 
         var ordenado = [];
@@ -121,7 +125,11 @@ var Narnia = {};
             return b - a;
         });
         for (var t = 0; t < data_total.length; t++) {
-            ordenado.push(data_row[data_total[t]]);
+            for (var x = 0; x < data_total.length; x++) {
+                var arrr2 = arrr[x + '-' + data_total[t]];
+                if((typeof arrr2 !== 'undefined') && (ordenado.indexOf(arrr2) == -1))
+                    ordenado.push(arrr2);
+            }
         }
 
         var row_o = '';
@@ -130,7 +138,6 @@ var Narnia = {};
             $('#narnia-table > tbody').append(row_o);
         });
     }
-
 
     cartola.initialize = function () {
         $(document).ready(function () {
