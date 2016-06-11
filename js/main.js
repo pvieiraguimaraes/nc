@@ -33,7 +33,7 @@ var Narnia = {};
             success: function (data) {
                 atletas_pontuados = data.atletas;
             },
-            complete: function(data){
+            complete: function (data) {
                 for (var i = 0; i < times.length; i++) {
                     get_pontuacao_rodada(times[i], function (obj) {
                         montaTime(obj);
@@ -53,14 +53,14 @@ var Narnia = {};
         var patrimonio = data.patrimonio;
 
         var atletas_html = '';
-        if(typeof atletas_pontuados !== 'undefined')
+        if (typeof atletas_pontuados !== 'undefined')
             atletas_html = createAtletasTimeHtml(data.atletas);
 
         var parcial_rodada = (typeof atletas_pontuados !== 'undefined') ? total_pontos.toFixed(2) : pontos;
         var slug_time = data.time.slug;
 
         $('#narnia-table').append('<tr class="' + slug_time + '" data-row="' + slug_time + '" data-total="' + parcial_rodada + '"><td colspan="1"><div class="col-xs-12"><img src="' + imgEscudo + '" style="width: 50px;"><img style="width: 30px;position: absolute;left: 45px;top: 25px;" src="' + imgPerfil + '" class="img-circle"></div></td><td colspan="3"><h3>' + nome + '</h3><p>' + nome_cartola + '</p></td><td colspan="2"><p class="ponto" style="text-align: center">' + pontos + '</p></td><td colspan="2" style="text-align: center"><p class="pontoparcial">' + parcial_rodada + '</p></td><td colspan="2" style="text-align: center;"><p class="patrimonio">' + patrimonio + '</p></td><td colspan="2" style="text-align: center" class="coca"></td></tr>');
-        if(atletas_html != '')
+        if (atletas_html != '')
             $('#narnia-table').append('<tr class="' + slug_time + '"	>' + atletas_html + '</tr>');
 
         total_pontos = 0.00;
@@ -83,9 +83,12 @@ var Narnia = {};
             total_pontos += pontuacao;
         }
 
+        var foto = data.foto;
+        if (foto == null) foto = '';
+
         return '<td><div class="col-xs-12">' +
             '<p style="font-size: small">' + data.apelido + '</p>' +
-            '<img style="width: 40px;" src="' + data.foto.replace("FORMATO", "140x140") + '">' +
+            '<img style="width: 40px;" src="' + foto.replace("FORMATO", "140x140") + '">' +
             '<p>' + pontuacao + '<p>' +
             '</div></td>';
     }
@@ -127,7 +130,7 @@ var Narnia = {};
         for (var t = 0; t < data_total.length; t++) {
             for (var x = 0; x < data_total.length; x++) {
                 var arrr2 = arrr[x + '-' + data_total[t]];
-                if((typeof arrr2 !== 'undefined') && (ordenado.indexOf(arrr2) == -1))
+                if ((typeof arrr2 !== 'undefined') && (ordenado.indexOf(arrr2) == -1))
                     ordenado.push(arrr2);
             }
         }
