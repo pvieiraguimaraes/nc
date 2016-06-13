@@ -32,10 +32,12 @@ var Narnia = {};
             data: {
                 api: "parciais-atletas"
             },
-            success: function (data) {
-                atletas_pontuados = data.atletas;
-            },
             complete: function (data) {
+                if (data && data.atletas) {
+                    atletas_pontuados = data.atletas;
+                } else {
+                    $('#info-mercado').html('Nenhuma parcial disponível')
+                }
                 for (var i = 0; i < times.length; i++) {
                     timesProcessados++;
                     get_pontuacao_rodada(times[i], function (obj) {
