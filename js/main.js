@@ -7,6 +7,7 @@ var Narnia = {};
     var times = ['perebas-forever', 'narnia-de-munique', 'sao-bacon-fc', 'goblins-team', 'boletos-fc', 'petrinhus-fc', 'xutebol-club'];
     var atletas_pontuados = [];
     var total_pontos = 0.00;
+    var classOrdenacao = '.pontoparcial';
 
     function get_pontuacao_rodada(nome_time, handleData) {
         $.ajax({
@@ -32,12 +33,15 @@ var Narnia = {};
             data: {
                 api: "parciais-atletas"
             },
-            complete: function (data) {
-                if (data && data.atletas) {
+            success: function (data) {
+                if (data && data.atletas !== 'undefined') {
                     atletas_pontuados = data.atletas;
                 } else {
-                    $('#info-mercado').html('Nenhuma parcial disponível')
+                    classOrdenacao = '.ponto';
+                    $('#info-mercado').html('Nenhuma parcial disponï¿½vel')
                 }
+            },
+            complete: function (data) {
                 for (var i = 0; i < times.length; i++) {
                     timesProcessados++;
                     get_pontuacao_rodada(times[i], function (obj) {
@@ -99,9 +103,9 @@ var Narnia = {};
     }
 
     function quem_paga() {
-        var menorObj = $('.pontoparcial').first();
-        var menorValor = parseFloat($('.pontoparcial').first().text());
-        $('.pontoparcial').each(function (i, obj) {
+        var menorObj = $(classOrdenacao).first();
+        var menorValor = parseFloat($(classOrdenacao).first().text());
+        $(classOrdenacao).each(function (i, obj) {
             if (parseFloat($(obj).text()) < menorValor) {
                 menorObj = obj;
                 menorValor = parseFloat($(obj).text());
