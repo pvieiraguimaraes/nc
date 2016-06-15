@@ -2,8 +2,6 @@ var Narnia = {};
 
 (function (cartola) {
 
-    var timesProcessados = 0;
-    var processado = false;
     var times = ['perebas-forever', 'narnia-de-munique', 'sao-bacon-fc', 'goblins-team', 'boletos-fc', 'petrinhus-fc', 'xutebol-club'];
     var atletas_pontuados = [];
     var total_pontos = 0.00;
@@ -39,7 +37,6 @@ var Narnia = {};
                     $('#info-mercado').html('Nenhuma parcial disponível')
                 }
                 for (var i = 0; i < times.length; i++) {
-                    timesProcessados++;
                     get_pontuacao_rodada(times[i], function (obj) {
                         montaTime(obj);
                     });
@@ -110,9 +107,7 @@ var Narnia = {};
 
         var parent = $(menorObj).parent().parent();
         parent.addClass('paga-coca');
-        $.get('https://api.riffsy.com/v1/search?tag=coca-cola&key=LIVDSRZULELA', function (data) {
-            parent.find('.coca').append('<img src="' + data.results[Math.floor(Math.random() * 19)].media[0].gif.url + '" style="height: 100px;">')
-        });
+        parent.find('.coca').append('<img src="img/coca.png" style="height: 100px;">')
     }
 
     function ordena() {
@@ -153,14 +148,11 @@ var Narnia = {};
         $(document).ready(function () {
             get_pontuacao_atletas();
         }).ajaxStop(function () {
-            if (!processado && times.length == timesProcessados) {
-                processado = true;
-                quem_paga();
-                ordena();
+            quem_paga();
+            ordena();
 
-                $('#narnia-table').show();
-                $('#spinner').hide();
-            }
+            $('#narnia-table').show();
+            $('#spinner').hide();
         });
     }
 }(Narnia));
