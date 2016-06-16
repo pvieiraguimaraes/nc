@@ -33,10 +33,10 @@ var Narnia = {};
                 api: "parciais-atletas"
             },
             complete: function (data) {
-                if (data && data.atletas) {
-                    atletas_pontuados = data.atletas;
+                if (data && data.responseJSON && data.responseJSON.atletas) {
+                  atletas_pontuados = data.responseJSON.atletas;
                 } else {
-                    $('#info-mercado').html('Nenhuma parcial disponível')
+                    $('#info-mercado').html('Nenhuma parcial disponÃ­vel')
                 }
                 for (var i = 0; i < times.length; i++) {
                     timesProcessados++;
