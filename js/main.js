@@ -115,6 +115,14 @@ var Narnia = {};
         });
     }
 
+    function mito(){
+        var theLegend = $('#narnia-table > tbody > tr')[0];
+        $(theLegend).addClass('mito');
+        $.get('https://api.riffsy.com/v1/search?tag=win&key=LIVDSRZULELA', function (data) {
+            $(theLegend).find('.coca').append('<img src="' + data.results[Math.floor(Math.random() * 19)].media[0].gif.url + '" style="height: 100px;">')
+        });
+    }
+
     function ordena() {
         var rows = $('#narnia-table > tbody > tr');
         var data_row = [], data_total = [], data_row_attr = '', data_total_attr = '';
@@ -157,7 +165,7 @@ var Narnia = {};
                 processado = true;
                 quem_paga();
                 ordena();
-
+                mito();
                 $('#narnia-table').show();
                 $('#spinner').hide();
             }
