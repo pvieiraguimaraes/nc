@@ -7,6 +7,7 @@ var Narnia = {};
     var times = ['perebas-forever', 'narnia-de-munique', 'sao-bacon-fc', 'goblins-team', 'boletos-fc', 'petrinhus-fc', 'xutebol-club'];
     var atletas_pontuados = [];
     var total_pontos = 0.00;
+    var classeOrdenacao = '.pontoparcial';
 
     function get_pontuacao_rodada(nome_time, handleData) {
         $.ajax({
@@ -36,7 +37,8 @@ var Narnia = {};
                 if (data && data.responseJSON && data.responseJSON.atletas) {
                   atletas_pontuados = data.responseJSON.atletas;
                 } else {
-                    $('#info-mercado').html('Nenhuma parcial disponível')
+                    $('#info-mercado').html('Tem parcial nao tiozao!');
+                    classeOrdenacao = '.ponto';
                 }
                 for (var i = 0; i < times.length; i++) {
                     timesProcessados++;
@@ -57,14 +59,12 @@ var Narnia = {};
         var pontos = data.pontos.toFixed(2);
         var patrimonio = data.patrimonio;
 
-        var atletas_html = '';
-        if (typeof atletas_pontuados !== 'undefined')
-            atletas_html = createAtletasTimeHtml(data.atletas);
-
-        var parcial_rodada = (typeof atletas_pontuados !== 'undefined') ? total_pontos.toFixed(2) : pontos;
+        var atletas_html = createAtletasTimeHtml(data.atletas);
+        var parcial_rodada = total_pontos.toFixed(2);
         var slug_time = data.time.slug;
+        var pontos_ordenacao = total_pontos == 0.00 ? pontos : total_pontos;
 
-        $('#narnia-table').append('<tr class="' + slug_time + '" data-row="' + slug_time + '" data-total="' + parcial_rodada + '"><td colspan="1"><div class="col-xs-12"><img src="' + imgEscudo + '" style="width: 50px;"><img style="width: 30px;position: absolute;left: 45px;top: 25px;" src="' + imgPerfil + '" class="img-circle"></div></td><td colspan="3"><h3>' + nome + '</h3><p>' + nome_cartola + '</p></td><td colspan="2"><p class="ponto" style="text-align: center">' + pontos + '</p></td><td colspan="2" style="text-align: center"><p class="pontoparcial">' + parcial_rodada + '</p></td><td colspan="2" style="text-align: center;"><p class="patrimonio">' + patrimonio + '</p></td><td colspan="2" style="text-align: center" class="coca"></td></tr>');
+        $('#narnia-table').append('<tr class="' + slug_time + '" data-row="' + slug_time + '" data-total="' + pontos_ordenacao + '"><td colspan="1"><div class="col-xs-12"><img src="' + imgEscudo + '" style="width: 50px;"><img style="width: 30px;position: absolute;left: 45px;top: 25px;" src="' + imgPerfil + '" class="img-circle"></div></td><td colspan="3"><h3>' + nome + '</h3><p>' + nome_cartola + '</p></td><td colspan="2"><p class="ponto" style="text-align: center">' + pontos + '</p></td><td colspan="2" style="text-align: center"><p class="pontoparcial">' + parcial_rodada + '</p></td><td colspan="2" style="text-align: center;"><p class="patrimonio">' + patrimonio + '</p></td><td colspan="2" style="text-align: center" class="coca"></td></tr>');
         if (atletas_html != '')
             $('#narnia-table').append('<tr class="' + slug_time + '"	>' + atletas_html + '</tr>');
 
@@ -99,9 +99,9 @@ var Narnia = {};
     }
 
     function quem_paga() {
-        var menorObj = $('.pontoparcial').first();
-        var menorValor = parseFloat($('.pontoparcial').first().text());
-        $('.pontoparcial').each(function (i, obj) {
+        var menorObj = $(classeOrdenacao).first();
+        var menorValor = parseFloat($(classeOrdenacao).first().text());
+        $(classeOrdenacao).each(function (i, obj) {
             if (parseFloat($(obj).text()) < menorValor) {
                 menorObj = obj;
                 menorValor = parseFloat($(obj).text());
