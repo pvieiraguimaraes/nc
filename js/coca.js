@@ -44,6 +44,9 @@ var Coca = {};
     cartola.initialize = function () {
         $(document).ready(function () {
             $('#mural-vergonha > tbody').append(montaMural());
+
+            $('#mural-vergonha').show();
+            $('#spinner').hide();
         });
     }
 }(Coca));
