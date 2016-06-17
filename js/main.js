@@ -110,16 +110,16 @@ var Narnia = {};
 
         var parent = $(menorObj).parent().parent();
         parent.addClass('paga-coca');
-        $.get('https://api.riffsy.com/v1/search?tag=coca-cola&key=LIVDSRZULELA', function (data) {
-            parent.find('.coca').append('<img src="' + data.results[Math.floor(Math.random() * 19)].media[0].gif.url + '" style="height: 100px;">')
+        $.get('http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=coca-cola', function (data) {
+            parent.find('.coca').append('<img src="' + data.data.image_url + '" style="height: 100px;">')
         });
     }
 
     function mito(){
         var theLegend = $('#narnia-table > tbody > tr')[0];
         $(theLegend).addClass('mito');
-        $.get('https://api.riffsy.com/v1/search?tag=win&key=LIVDSRZULELA', function (data) {
-            $(theLegend).find('.coca').append('<img src="' + data.results[Math.floor(Math.random() * 19)].media[0].gif.url + '" style="height: 100px;">')
+        $.get('http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=win', function (data) {
+            $(theLegend).find('.coca').append('<img src="' + data.data.image_url + '" style="height: 100px;">')
         });
     }
 
