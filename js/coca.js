@@ -68,7 +68,7 @@ var Coca = {};
 				return decodeURIComponent(escape("Narnia de Munique"));
 				break;
 			case "sao_bacon_fc":
-				return decodeURIComponent(escape("São Bacon FC"));
+				return decodeURIComponent(escape("Sao Bacon FC"));
 				break;
 			case "goblins_team":
 				return decodeURIComponent(escape("Goblins Team"));
@@ -83,7 +83,7 @@ var Coca = {};
 				return decodeURIComponent(escape("Xutebol Club"));
 				break;
 			case "cachaca_s_esporte_clube":
-				return decodeURIComponent(escape("Cachaças's Esporte Clube"));
+				return decodeURIComponent(escape("Cachacas's Esporte Clube"));
 				break;
 		}
 	}
@@ -96,7 +96,7 @@ var Coca = {};
 			$('#spinner').hide();
 
 
-			imagensMural();
+			//imagensMural();
 		});
 	}
 }(Coca));
