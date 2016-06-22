@@ -16,6 +16,8 @@ if (isset($_GET["api"]) and $_GET["api"] !== "") {
         $url = "https://api.cartolafc.globo.com/time/" . $_GET["team_slug"];
     } else if ($_GET["api"] === "parciais-atletas") {
         $url = "https://api.cartolafc.globo.com/atletas/pontuados";
+    } else if ($_GET["api"] === "status-mercado") {
+        $url = "https://api.cartolafc.globo.com/mercado/status";
     }
 
     $c = curl_init();

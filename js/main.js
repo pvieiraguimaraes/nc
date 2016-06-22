@@ -8,6 +8,7 @@ var Narnia = {};
     var atletas_pontuados = [];
     var total_pontos = 0.00;
     var classeOrdenacao = '.pontoparcial';
+    var mercadoFechado = true;
 
     function get_pontuacao_rodada(nome_time, handleData) {
         $.ajax({
@@ -21,6 +22,23 @@ var Narnia = {};
             },
             success: function (data) {
                 handleData(data);
+            }
+        });
+    }
+
+    function get_status_mercado() {
+        $.ajax({
+            type: "GET",
+            contentType: "application/json",
+            cache: false,
+            url: "load-api.php",
+            data: {
+                api: "status-mercado"
+            },
+            success: function (data) {
+                if(data.status_mercado == 'undefined' || data.status_mercado != 2) {
+                    mercadoFechado = false;
+                }
             }
         });
     }
@@ -62,7 +80,7 @@ var Narnia = {};
         var atletas_html = createAtletasTimeHtml(data.atletas);
         var parcial_rodada = total_pontos.toFixed(2);
         var slug_time = data.time.slug;
-        var pontos_ordenacao = total_pontos == 0.00 ? pontos : total_pontos;
+        var pontos_ordenacao = (total_pontos == 0.00 && !mercadoFechado) ? pontos : total_pontos;
         var pro = data.time.assinante == true ? '<img src="https://cartolafc.globo.com/dist/0.6.9/img/selo-cartoleiro-pro.svg" class="cartola-pro">' : '';
 
         $('#narnia-table').append('<tr class="' + slug_time + '" data-row="' + slug_time + '" data-total="' + pontos_ordenacao + '"><td colspan="1"><div class="col-xs-12">' + pro + '<img src="' + imgEscudo + '" style="width: 50px;"><img style="width: 30px;position: absolute;left: 45px;top: 25px;" src="' + imgPerfil + '" class="img-circle"></div></td><td colspan="3"><h3>' + nome + '</h3><p>' + nome_cartola + '</p></td><td colspan="2"><p class="ponto" style="text-align: center">' + pontos + '</p></td><td colspan="2" style="text-align: center"><p class="pontoparcial">' + parcial_rodada + '</p></td><td colspan="2" style="text-align: center;"><p class="patrimonio">' + patrimonio + '</p></td><td colspan="2" style="text-align: center" class="coca"></td></tr>');
@@ -160,6 +178,7 @@ var Narnia = {};
 
     cartola.initialize = function () {
         $(document).ready(function () {
+            get_status_mercado();
             get_pontuacao_atletas();
         }).ajaxStop(function () {
             if (!processado && times.length == timesProcessados) {
