@@ -77,7 +77,7 @@ var Narnia = {};
         var pontos = data.pontos.toFixed(2);
         var patrimonio = data.patrimonio;
 
-        var atletas_html = createAtletasTimeHtml(data.atletas);
+        var atletas_html = createAtletasTimeHtml(data.atletas, data.posicoes);
         var parcial_rodada = total_pontos.toFixed(2);
         var slug_time = data.time.slug;
         var pontos_ordenacao = (total_pontos == 0.00 && !mercadoFechado) ? pontos : total_pontos;
@@ -90,15 +90,15 @@ var Narnia = {};
         total_pontos = 0.00;
     }
 
-    function createAtletasTimeHtml(atletas_time) {
+    function createAtletasTimeHtml(atletas_time, posicoes) {
         var atletas = '';
         for (var i = 0; i < atletas_time.length; i++) {
-            atletas += getTemplateAtleta(atletas_time[i]);
+            atletas += getTemplateAtleta(atletas_time[i], posicoes);
         }
         return atletas;
     }
 
-    function getTemplateAtleta(data) {
+    function getTemplateAtleta(data, posicoes) {
         var atletaPontuado = atletas_pontuados[data.atleta_id];
         var pontuacao = 0.00;
 
@@ -109,9 +109,10 @@ var Narnia = {};
 
         var foto = data.foto;
         if (foto == null) foto = '';
+        var posicao = posicoes[data.posicao_id].abreviacao;
 
         return '<td><div class="col-xs-12">' +
-            '<p style="font-size: small">' + data.apelido + '</p>' +
+            '<p style="font-size: small">' + data.apelido + ' (' + posicao + ')' + '</p>' +
             '<img style="width: 40px;" src="' + foto.replace("FORMATO", "140x140") + '">' +
             '<p>' + pontuacao + '<p>' +
             '</div></td>';
