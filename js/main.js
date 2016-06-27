@@ -9,7 +9,32 @@ var Narnia = {};
     var total_pontos = 0.00;
     var classeOrdenacao = '.pontoparcial';
     var mercadoFechado = true;
-
+    
+    function get_clube(clube_id){
+        switch(clube_id){
+            case 262: return 'Flamengo';
+            case 263: return 'Botafogo';
+            case 264: return 'Corinthians'; 
+            case 266: return 'Fluminense';
+            case 275: return 'Palmeiras';
+            case 276: return 'Sao Paulo';
+            case 277: return 'Santos';                                
+            case 282: return 'Atletico-MG';                    
+            case 283: return 'Cruzeiro';                                
+            case 284: return 'Gremio';                                
+            case 285: return 'Internacional';  
+            case 287: return 'Vitoria';                                
+            case 292: return 'Sport';                                
+            case 293: return 'Atletico-PR';                                
+            case 294: return 'Coritiba';                                
+            case 303: return 'Ponte Preta';                                
+            case 315: return 'Chapecoense';
+            case 316: return 'Figueirense';   
+            case 327: return 'America-MG';                                
+            case 344: return 'Santa Cruz';                                
+        }
+    }
+    
     function get_pontuacao_rodada(nome_time, handleData) {
         $.ajax({
             type: "GET",
@@ -110,11 +135,13 @@ var Narnia = {};
         var foto = data.foto;
         if (foto == null) foto = '';
         var posicao = posicoes[data.posicao_id].abreviacao;
+        var clube_id = data.clube_id;
 
         return '<td><div class="col-xs-12">' +
-            '<p style="font-size: small">' + data.apelido + ' (' + posicao + ')' + '</p>' +
+            '<p style="font-size: small">' + data.apelido + ' (' + posicao + ')' + '</p>' +            
+            '<p style="font-size: small">' + get_clube(clube_id) + '</p>' +
             '<img style="width: 40px;" src="' + foto.replace("FORMATO", "140x140") + '">' +
-            '<p>' + pontuacao + '<p>' +
+            '<p>' + pontuacao + '<p>' +            
             '</div></td>';
     }
 
