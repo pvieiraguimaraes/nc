@@ -13,7 +13,7 @@ var Coca = {};
 		boletos_fc: [3, 4, 9],
 		petrinhus_fc: [6, 11],
 		xutebol_club: [1, 2],
-		cachaca_s_esporte_clube: []
+		cachaca_s_esporte_clube: [12]
 	};
 
 	function montaMural() {
