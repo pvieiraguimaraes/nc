@@ -11,7 +11,7 @@ var Coca = {};
 		sao_bacon_fc: [7, 8],
 		goblins_team: [5, 10],
 		boletos_fc: [3, 4, 9],
-		petrinhus_fc: [6, 11],
+		petrinhus_fc: [6, 11,15],
 		xutebol_club: [1, 2],
 		cachaca_s_esporte_clube: [12]
 	};
