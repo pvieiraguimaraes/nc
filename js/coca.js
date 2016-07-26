@@ -6,12 +6,12 @@ var Coca = {};
 
 	//Nome do time com os numeros das rodadas que pagou
 	var timesPagantes = {
-		perebas_forever: [13,14],
+		perebas_forever: [13, 14],
 		narnia_de_munique: [],
-		sao_bacon_fc: [7, 8],
+		sao_bacon_fc: [7, 8, 16],
 		goblins_team: [5, 10],
 		boletos_fc: [3, 4, 9],
-		petrinhus_fc: [6, 11,15],
+		petrinhus_fc: [6, 11, 15],
 		xutebol_club: [1, 2],
 		cachaca_s_esporte_clube: [12]
 	};
