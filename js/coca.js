@@ -9,7 +9,7 @@ var Coca = {};
 		perebas_forever: [13, 14],
 		narnia_de_munique: [],
 		sao_bacon_fc: [7, 8, 16],
-		goblins_team: [5, 10],
+		goblins_team: [5, 10, 17],
 		boletos_fc: [3, 4, 9],
 		petrinhus_fc: [6, 11, 15],
 		xutebol_club: [1, 2],
