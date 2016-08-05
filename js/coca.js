@@ -12,7 +12,7 @@ var Coca = {};
 		goblins_team: [5, 10, 17],
 		boletos_fc: [3, 4, 9],
 		petrinhus_fc: [6, 11, 15],
-		xutebol_club: [1, 2],
+		xutebol_club: [1, 2, 18],
 		cachaca_s_esporte_clube: [12]
 	};
 
