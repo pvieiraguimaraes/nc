@@ -2,6 +2,7 @@ var Coca = {};
 
 (function (cartola) {
 
+	var totalCaixa = 0;
 	var numRodadas = 38;
 
 	//Nome do time com os numeros das rodadas que pagou
@@ -19,6 +20,7 @@ var Coca = {};
 	function montaMural() {
 		var linhaNormal = '<td></td>';
 		var linhaCoca = '<td style="text-align: center"><img src="img/coca.png" style="width: 10px;"></td>';
+		var linhaCoin = '<td style="text-align: center"><img src="img/coin.png" style="width: 20px;"></td>';
 
 		var pagantes = '';
 		for (var k in timesPagantes) {
@@ -29,7 +31,12 @@ var Coca = {};
 				for (var r = 0; r < rodadas.length; r++) {
 					if (rodadas[r] == i) {
 						linhapagou = true;
-						pagantes += linhaCoca;
+						if(i >= 14){
+							pagantes += linhaCoin;
+							totalCaixa += 6;
+						} else {
+							pagantes += linhaCoca;
+						}
 					}
 				}
 				if (!linhapagou) {
@@ -95,7 +102,7 @@ var Coca = {};
 			$('#mural-vergonha').show();
 			$('#spinner').hide();
 
-
+			$('#mural-vergonha-zoeira').append('<h1>R$'+totalCaixa+',00 temmers</h1>');
 			//imagensMural();
 		});
 	}
