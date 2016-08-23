@@ -12,7 +12,7 @@ var Coca = {};
 		sao_bacon_fc: [7, 8, 16],
 		goblins_team: [5, 10, 17, 20],
 		boletos_fc: [3, 4, 9],
-		petrinhus_fc: [6, 11, 15, 19],
+		petrinhus_fc: [6, 11, 15, 19, 21],
 		xutebol_club: [1, 2, 18],
 		cachaca_s_esporte_clube: [12]
 	};
@@ -24,7 +24,8 @@ var Coca = {};
 
 		var pagantes = '';
 		for (var k in timesPagantes) {
-			pagantes += '<tr><td>' + getNameTime(k) + '</td>'
+			var qtdePaga = timesPagantes[k].length
+			pagantes += '<tr><td>' + getNameTime(k) + '<span class="pull-right">' + qtdePaga +  '</span>' + '</td>'
 			for (var i = 1; i <= numRodadas; i++) {
 				var rodadas = timesPagantes[k];
 				var linhapagou = false;
