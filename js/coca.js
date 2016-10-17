@@ -10,11 +10,11 @@ var Coca = {};
 		perebas_forever: [13, 14, 26, 27],
 		narnia_de_munique: [],
 		sao_bacon_fc: [7, 8, 16],
-		goblins_team: [5, 10, 17, 20, 29, 30],
+		goblins_team: [5, 10, 17, 20, 29],
 		boletos_fc: [3, 4, 9],
 		petrinhus_fc: [6, 11, 15, 19, 21, 22, 24],
 		xutebol_club: [1, 2, 18, 28],
-		cachaca_s_esporte_clube: [12, 23, 25]
+		cachaca_s_esporte_clube: [12, 23, 25, 30]
 	};
 
 	function montaMural() {
